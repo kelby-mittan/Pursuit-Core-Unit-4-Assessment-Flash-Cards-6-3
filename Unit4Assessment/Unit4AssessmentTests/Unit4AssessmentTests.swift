@@ -52,5 +52,16 @@ class Unit4AssessmentTests: XCTestCase {
 
         
     }
+    
+    func testAPIClient() {
+        CardAPIClient.fetchCards { (result) in
+            switch result {
+            case .failure(let error):
+                XCTFail("decoding error: \(error)")
+            case .success(let cards):
+                XCTAssertEqual(cards.count, 52)
+            }
+        }
+    }
 
 }

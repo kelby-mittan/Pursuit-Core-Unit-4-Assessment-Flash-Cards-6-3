@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct CardData: Codable & Equatable {
+    let cardListType: String
+    let cards: [Card]
+}
+
+struct Card: Codable & Equatable {
+    let id: String
+    let cardTitle: String
+    let facts: [String]
+}
