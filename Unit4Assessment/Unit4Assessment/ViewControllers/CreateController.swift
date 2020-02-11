@@ -13,8 +13,6 @@ class CreateController: UIViewController {
     
     private let createVC = CreateView()
     
-    
-    
     private var titleForCard = ""
     private var cardFact1 = ""
     private var cardFact2 = ""
@@ -59,7 +57,6 @@ class CreateController: UIViewController {
             } catch {
                 showAlert(title: "Sorry", message: "This Flash Card could not be saved")
             }
-//            showAlert(title: "Great", message: "This card has been added!!!")
             navigationController?.pushViewController(cardsVC, animated: true)
         } else {
             showAlert(title: "Oops", message: "Please enter a title as well as two facts!!")

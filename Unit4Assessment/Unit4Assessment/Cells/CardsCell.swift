@@ -29,6 +29,7 @@ class CardsCell: UICollectionViewCell {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         button.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
+        button.tintColor = .systemGreen
         return button
     }()
     
@@ -132,13 +133,11 @@ class CardsCell: UICollectionViewCell {
     }
     
     @objc private func addButtonPressed(_ sender: UIButton) {
-        print("add button pressed for \(currentCard.id)")
         delegate?.selectedButton(self, card: currentCard)
         addButton.isEnabled = false
     }
     
     @objc private func moreButtonPressed(_ sender: UIButton) {
-        print("more button pressed")
         delegate?.selectedButton(self, card: currentCard)
     }
     

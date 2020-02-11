@@ -50,7 +50,7 @@ class CardsController: UIViewController {
         do {
             savedFlashCards = try dataPersistence.loadItems()
         } catch {
-            print("could not load cards")
+            showAlert(title: "Oops", message: "could not load cards")
         }
     }
     

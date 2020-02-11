@@ -15,6 +15,8 @@ class SearchCardsController: UIViewController {
     
     private let searchView = SearchView()
     
+    private var savedFlashCards = [Card]()
+    
     private var isShowingFact = false
     
     override func loadView() {
@@ -36,25 +38,24 @@ class SearchCardsController: UIViewController {
         searchView.collectionView.delegate = self
         
         searchView.backgroundColor = .systemBackground
-//        getCards()
-        getLocalCards()
         searchView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "searchCell")
         
-        dump(flashCards)
+        getLocalCards()
+        loadSavedCards()
     }
     
     
-    private func getCards() {
-        CardAPIClient.fetchCards { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-                print("error \(error)")
-            case .success(let cards):
-                self?.flashCards = cards
-            }
-        }
-        
-    }
+//    private func getCards() {
+//        CardAPIClient.fetchCards { [weak self] (result) in
+//            switch result {
+//            case .failure(let error):
+//                print("error \(error)")
+//            case .success(let cards):
+//                self?.flashCards = cards
+//            }
+//        }
+//
+//    }
     
     private func getLocalCards() {
         
@@ -65,6 +66,13 @@ class SearchCardsController: UIViewController {
         }
     }
 
+    private func loadSavedCards() {
+        do {
+            savedFlashCards = try dataPersistence.loadItems()
+        } catch {
+            showAlert(title: "Oops", message: "could not load cards")
+        }
+    }
 
 }
 
@@ -80,6 +88,11 @@ extension SearchCardsController: UICollectionViewDataSource {
         }
         cell.isSavedCell = true
         let card = flashCards[indexPath.row]
+        
+        if savedFlashCards.contains(card) {
+            cell.addButton.isEnabled = false
+        }
+        
         cell.currentCard = card
         cell.delegate = self
         cell.configureCell(for: card)
@@ -107,7 +120,6 @@ extension SearchCardsController: UICollectionViewDelegateFlowLayout {
 extension SearchCardsController: CardCellDelegate {
     
     func selectedButton(_ cell: CardsCell, card: Card) {
-        print("\(card.quizTitle)")
         do {
             try dataPersistence.createItem(card)
             showAlert(title: "Great", message: "This flash card has been added.")
