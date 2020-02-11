@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		026ACE3A23F2F90F0013538D /* SearchCardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE3923F2F90F0013538D /* SearchCardsController.swift */; };
+		026ACE3C23F2F9340013538D /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE3B23F2F9340013538D /* CreateController.swift */; };
+		026ACE3E23F2F9670013538D /* CardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE3D23F2F9670013538D /* CardsController.swift */; };
+		026ACE4023F2F9910013538D /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE3F23F2F9910013538D /* CardsView.swift */; };
+		026ACE4223F2F9EC0013538D /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4123F2F9EC0013538D /* CreateView.swift */; };
+		026ACE4423F2F9FD0013538D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4323F2F9FD0013538D /* SearchView.swift */; };
+		026ACE4623F2FA2F0013538D /* CardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4523F2FA2F0013538D /* CardsCell.swift */; };
+		026ACE4823F2FA440013538D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4723F2FA440013538D /* SearchCell.swift */; };
+		026ACE4A23F2FA740013538D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4923F2FA740013538D /* Card.swift */; };
+		026ACE4C23F2FA870013538D /* CardsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4B23F2FA870013538D /* CardsAPIClient.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
-		5790239C23F2EE39000AA216 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239B23F2EE39000AA216 /* ViewController.swift */; };
-		5790239F23F2EE39000AA216 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5790239D23F2EE39000AA216 /* Main.storyboard */; };
 		579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579023A023F2EE3B000AA216 /* Assets.xcassets */; };
 		579023A423F2EE3B000AA216 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579023A223F2EE3B000AA216 /* LaunchScreen.storyboard */; };
 		579023AF23F2EE3B000AA216 /* Unit4AssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579023AE23F2EE3B000AA216 /* Unit4AssessmentTests.swift */; };
@@ -27,11 +35,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		026ACE3923F2F90F0013538D /* SearchCardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsController.swift; sourceTree = "<group>"; };
+		026ACE3B23F2F9340013538D /* CreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
+		026ACE3D23F2F9670013538D /* CardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsController.swift; sourceTree = "<group>"; };
+		026ACE3F23F2F9910013538D /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
+		026ACE4123F2F9EC0013538D /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		026ACE4323F2F9FD0013538D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		026ACE4523F2FA2F0013538D /* CardsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCell.swift; sourceTree = "<group>"; };
+		026ACE4723F2FA440013538D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		026ACE4923F2FA740013538D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		026ACE4B23F2FA870013538D /* CardsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAPIClient.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5790239B23F2EE39000AA216 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5790239E23F2EE39000AA216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		579023A023F2EE3B000AA216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		579023A323F2EE3B000AA216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		579023A523F2EE3B000AA216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +74,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		026ACE3323F2F7EF0013538D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5790239723F2EE39000AA216 /* AppDelegate.swift */,
+				5790239923F2EE39000AA216 /* SceneDelegate.swift */,
+				579023A023F2EE3B000AA216 /* Assets.xcassets */,
+				579023A223F2EE3B000AA216 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		026ACE3423F2F8170013538D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				026ACE4523F2FA2F0013538D /* CardsCell.swift */,
+				026ACE4723F2FA440013538D /* SearchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		026ACE3523F2F8360013538D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				026ACE4923F2FA740013538D /* Card.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		026ACE3623F2F8470013538D /* API Client */ = {
+			isa = PBXGroup;
+			children = (
+				026ACE4B23F2FA870013538D /* CardsAPIClient.swift */,
+			);
+			path = "API Client";
+			sourceTree = "<group>";
+		};
+		026ACE3723F2F85A0013538D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				026ACE3F23F2F9910013538D /* CardsView.swift */,
+				026ACE4123F2F9EC0013538D /* CreateView.swift */,
+				026ACE4323F2F9FD0013538D /* SearchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		026ACE3823F2F8660013538D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				026ACE3D23F2F9670013538D /* CardsController.swift */,
+				026ACE3B23F2F9340013538D /* CreateController.swift */,
+				026ACE3923F2F90F0013538D /* SearchCardsController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		5790238B23F2EE39000AA216 = {
 			isa = PBXGroup;
 			children = (
@@ -79,12 +151,12 @@
 		5790239623F2EE39000AA216 /* Unit4Assessment */ = {
 			isa = PBXGroup;
 			children = (
-				5790239723F2EE39000AA216 /* AppDelegate.swift */,
-				5790239923F2EE39000AA216 /* SceneDelegate.swift */,
-				5790239B23F2EE39000AA216 /* ViewController.swift */,
-				5790239D23F2EE39000AA216 /* Main.storyboard */,
-				579023A023F2EE3B000AA216 /* Assets.xcassets */,
-				579023A223F2EE3B000AA216 /* LaunchScreen.storyboard */,
+				026ACE3823F2F8660013538D /* ViewControllers */,
+				026ACE3723F2F85A0013538D /* Views */,
+				026ACE3623F2F8470013538D /* API Client */,
+				026ACE3523F2F8360013538D /* Models */,
+				026ACE3423F2F8170013538D /* Cells */,
+				026ACE3323F2F7EF0013538D /* Supporting Files */,
 				579023A523F2EE3B000AA216 /* Info.plist */,
 			);
 			path = Unit4Assessment;
@@ -182,7 +254,6 @@
 			files = (
 				579023A423F2EE3B000AA216 /* LaunchScreen.storyboard in Resources */,
 				579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */,
-				5790239F23F2EE39000AA216 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +271,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5790239C23F2EE39000AA216 /* ViewController.swift in Sources */,
+				026ACE4023F2F9910013538D /* CardsView.swift in Sources */,
+				026ACE4823F2FA440013538D /* SearchCell.swift in Sources */,
+				026ACE4623F2FA2F0013538D /* CardsCell.swift in Sources */,
+				026ACE3A23F2F90F0013538D /* SearchCardsController.swift in Sources */,
+				026ACE3C23F2F9340013538D /* CreateController.swift in Sources */,
 				5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */,
+				026ACE4423F2F9FD0013538D /* SearchView.swift in Sources */,
+				026ACE4223F2F9EC0013538D /* CreateView.swift in Sources */,
 				5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */,
+				026ACE4C23F2FA870013538D /* CardsAPIClient.swift in Sources */,
+				026ACE3E23F2F9670013538D /* CardsController.swift in Sources */,
+				026ACE4A23F2FA740013538D /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +305,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5790239D23F2EE39000AA216 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5790239E23F2EE39000AA216 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		579023A223F2EE3B000AA216 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
