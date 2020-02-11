@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		026ACE4823F2FA440013538D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4723F2FA440013538D /* SearchCell.swift */; };
 		026ACE4A23F2FA740013538D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4923F2FA740013538D /* Card.swift */; };
 		026ACE4C23F2FA870013538D /* CardsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4B23F2FA870013538D /* CardsAPIClient.swift */; };
+		026ACE4E23F2FDAC0013538D /* FlashCardsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4D23F2FDAC0013538D /* FlashCardsTabBarController.swift */; };
+		026ACE5123F2FE140013538D /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 026ACE5023F2FE140013538D /* ImageKit */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579023A023F2EE3B000AA216 /* Assets.xcassets */; };
@@ -45,6 +47,7 @@
 		026ACE4723F2FA440013538D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		026ACE4923F2FA740013538D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		026ACE4B23F2FA870013538D /* CardsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAPIClient.swift; sourceTree = "<group>"; };
+		026ACE4D23F2FDAC0013538D /* FlashCardsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsTabBarController.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026ACE5123F2FE140013538D /* ImageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +127,7 @@
 		026ACE3823F2F8660013538D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				026ACE4D23F2FDAC0013538D /* FlashCardsTabBarController.swift */,
 				026ACE3D23F2F9670013538D /* CardsController.swift */,
 				026ACE3B23F2F9340013538D /* CreateController.swift */,
 				026ACE3923F2F90F0013538D /* SearchCardsController.swift */,
@@ -187,6 +192,9 @@
 			dependencies = (
 			);
 			name = Unit4Assessment;
+			packageProductDependencies = (
+				026ACE5023F2FE140013538D /* ImageKit */,
+			);
 			productName = Unit4Assessment;
 			productReference = 5790239423F2EE39000AA216 /* Unit4Assessment.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 5790238B23F2EE39000AA216;
+			packageReferences = (
+				026ACE4F23F2FE140013538D /* XCRemoteSwiftPackageReference "ImageKit" */,
+			);
 			productRefGroup = 5790239523F2EE39000AA216 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -275,6 +286,7 @@
 				026ACE4823F2FA440013538D /* SearchCell.swift in Sources */,
 				026ACE4623F2FA2F0013538D /* CardsCell.swift in Sources */,
 				026ACE3A23F2F90F0013538D /* SearchCardsController.swift in Sources */,
+				026ACE4E23F2FDAC0013538D /* FlashCardsTabBarController.swift in Sources */,
 				026ACE3C23F2F9340013538D /* CreateController.swift in Sources */,
 				5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */,
 				026ACE4423F2F9FD0013538D /* SearchView.swift in Sources */,
@@ -543,6 +555,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		026ACE4F23F2FE140013538D /* XCRemoteSwiftPackageReference "ImageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/ImageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		026ACE5023F2FE140013538D /* ImageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 026ACE4F23F2FE140013538D /* XCRemoteSwiftPackageReference "ImageKit" */;
+			productName = ImageKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5790238C23F2EE39000AA216 /* Project object */;
 }
