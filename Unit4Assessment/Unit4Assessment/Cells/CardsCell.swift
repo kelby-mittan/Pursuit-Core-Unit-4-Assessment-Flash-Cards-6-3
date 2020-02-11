@@ -76,6 +76,7 @@ class CardsCell: UICollectionViewCell {
     
     private func commonInit() {
         setupAddButtonConstraints()
+        setupMoreButtonConstraints()
         setupCardTitleConstraints()
         setupCardFactsConstraints()
         addGestureRecognizer(longPressGesture)
@@ -90,6 +91,18 @@ class CardsCell: UICollectionViewCell {
             addButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             addButton.heightAnchor.constraint(equalToConstant: 44),
             addButton.widthAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    private func setupMoreButtonConstraints() {
+        addSubview(moreButton)
+        moreButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            moreButton.topAnchor.constraint(equalTo: topAnchor),
+            moreButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            moreButton.heightAnchor.constraint(equalToConstant: 44),
+            moreButton.widthAnchor.constraint(equalToConstant: 44)
         ])
     }
     
@@ -156,11 +169,12 @@ class CardsCell: UICollectionViewCell {
         
         if isSavedCell {
             addButton.isHidden = false
+            moreButton.isHidden = true
         } else {
             addButton.isHidden = true
         }
         
-        cardTitle.text = card.cardTitle
+        cardTitle.text = card.quizTitle
         cardFacts.text = card.facts.joined(separator: " ").capitalized
     }
 }

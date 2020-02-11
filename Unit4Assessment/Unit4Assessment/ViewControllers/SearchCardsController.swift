@@ -36,7 +36,8 @@ class SearchCardsController: UIViewController {
         searchView.collectionView.delegate = self
         
         searchView.backgroundColor = .systemBackground
-        getCards()
+//        getCards()
+        getLocalCards()
         searchView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "searchCell")
         
         dump(flashCards)
@@ -53,6 +54,15 @@ class SearchCardsController: UIViewController {
             }
         }
         
+    }
+    
+    private func getLocalCards() {
+        
+        do {
+        flashCards = try FlashCardService.fetchFlashCards()
+        } catch {
+            print("couldn't get flash cards")
+        }
     }
 
 
@@ -89,16 +99,6 @@ extension SearchCardsController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? CardsCell else {
-            fatalError("could not deque")
-        }
-        
-        cell.animate()
-        
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
     }
@@ -107,11 +107,10 @@ extension SearchCardsController: UICollectionViewDelegateFlowLayout {
 extension SearchCardsController: CardCellDelegate {
     
     func selectedButton(_ cell: CardsCell, card: Card) {
-        print("\(card.cardTitle)")
+        print("\(card.quizTitle)")
         do {
             try dataPersistence.createItem(card)
             showAlert(title: "Great", message: "This flash card has been added.")
-//            cell.addButton.isEnabled = false
         } catch {
             print("could not create")
             showAlert(title: "oops", message: "could not add flash card")

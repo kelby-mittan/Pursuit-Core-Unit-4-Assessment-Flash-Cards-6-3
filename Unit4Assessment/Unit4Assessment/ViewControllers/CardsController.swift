@@ -17,10 +17,13 @@ class CardsController: UIViewController {
         view = cardsView
     }
     
-    private var flashCards = [Card]() {
+    private var savedFlashCards = [Card]() {
         didSet {
-            DispatchQueue.main.async {
-                self.cardsView.collectionView.reloadData()
+            cardsView.collectionView.reloadData()
+            if savedFlashCards.isEmpty {
+                cardsView.collectionView.backgroundView = EmptyView(title: "Saved Flash Cards", message: "There are currently no saved Flash Cards. Create a Flash Card or add a Flash Card.")
+            } else {
+                cardsView.collectionView.backgroundView = nil
             }
         }
     }
@@ -38,9 +41,14 @@ class CardsController: UIViewController {
         loadCards()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadCards()
+    }
+    
     private func loadCards() {
         do {
-            flashCards = try dataPersistence.loadItems()
+            savedFlashCards = try dataPersistence.loadItems()
         } catch {
             print("could not load cards")
         }
@@ -52,14 +60,16 @@ class CardsController: UIViewController {
 
 extension CardsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return flashCards.count
+        return savedFlashCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardsCell else {
             fatalError("could not deque")
         }
-        let card = flashCards[indexPath.row]
+        let card = savedFlashCards[indexPath.row]
+        cell.delegate = self
+        cell.currentCard = card
         cell.configureCell(for: card)
         cell.backgroundColor = .systemBackground
         return cell
@@ -67,6 +77,7 @@ extension CardsController: UICollectionViewDataSource {
     
     
 }
+
 
 extension CardsController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -77,16 +88,48 @@ extension CardsController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardsCell else {
-            fatalError("could not deque")
-        }
-        
-        
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
     }
+}
+
+extension CardsController: DataPersistenceDelegate {
+    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        loadCards()
+    }
+    
+    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        loadCards()
+    }
+    
+}
+
+extension CardsController: CardCellDelegate {
+    func selectedButton(_ cell: CardsCell, card: Card) {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.deleteCard(card)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true)
+    }
+    
+    private func deleteCard(_ card: Card) {
+        
+        guard let index = savedFlashCards.firstIndex(of: card) else {
+            return
+        }
+        savedFlashCards.remove(at: index)
+        do {
+            try self.dataPersistence.deleteItem(at: index)
+        } catch {
+            showAlert(title: "Oops", message: "could not delete flash card")
+        }
+    }
+    
 }

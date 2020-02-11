@@ -23,8 +23,8 @@ final class FlashCardService {
       throw AppleServiceError.contentsNotFound
     }
     do {
-      let stocks = try JSONDecoder().decode([Card].self, from: json)
-      return stocks
+      let cards = try JSONDecoder().decode([Card].self, from: json)
+      return cards
     } catch {
       throw AppleServiceError.decodingError(error)
     }

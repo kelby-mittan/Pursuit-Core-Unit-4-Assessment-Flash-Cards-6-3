@@ -37,7 +37,7 @@ class FlashCardsTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewControllers = [cardsVC,createCardsVC,searchCardsVC]
+        viewControllers = [cardsVC,UINavigationController(rootViewController: createCardsVC),searchCardsVC]
     }
     
 
