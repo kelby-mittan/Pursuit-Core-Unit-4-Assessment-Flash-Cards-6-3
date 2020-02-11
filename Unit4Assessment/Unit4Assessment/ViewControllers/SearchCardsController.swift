@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import DataPersistence
 
 class SearchCardsController: UIViewController {
 
+    public var dataPersistence: DataPersistence<Card>!
+    
     private let searchView = SearchView()
     
     private var isShowingFact = false
     
     override func loadView() {
         view = searchView
+    }
+    
+    private var flashCards = [Card]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.searchView.collectionView.reloadData()
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -25,9 +36,27 @@ class SearchCardsController: UIViewController {
         searchView.collectionView.delegate = self
         
         searchView.backgroundColor = .systemBackground
-        searchView.collectionView.register(SearchCell.self, forCellWithReuseIdentifier: "searchCell")
+        getCards()
+        searchView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "searchCell")
+        
+        
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        getCards()
+//    }
+    
+    private func getCards() {
+        CardAPIClient.fetchCards { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print("error \(error)")
+            case .success(let cards):
+                self?.flashCards = cards
+            }
+        }
+    }
 
 
 }
@@ -35,14 +64,17 @@ class SearchCardsController: UIViewController {
 
 extension SearchCardsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return flashCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? SearchCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? CardsCell else {
             fatalError("could not deque")
         }
-        
+        dump(flashCards)
+        cell.isSavedCell = true
+        let card = flashCards[indexPath.row]
+        cell.configureCell(for: card)
         cell.backgroundColor = .systemBackground
         return cell
     }
@@ -61,29 +93,11 @@ extension SearchCardsController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? SearchCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? CardsCell else {
             fatalError("could not deque")
         }
         
         cell.animate()
-        print("did select")
-        let duration: Double = 1.5
-        if isShowingFact {
-            UIView.transition(with: cell, duration: duration, options: [.transitionFlipFromRight], animations: {
-                cell.cardTitle.alpha = 1.0
-                cell.cardFacts.alpha = 0.0
-                print("animate 1")
-                self.isShowingFact.toggle()
-            }, completion: nil)
-        } else {
-            UIView.transition(with: cell, duration: duration, options: [.transitionFlipFromRight], animations: {
-                cell.cardTitle.alpha = 0.0
-                cell.cardFacts.alpha = 1.0
-                cell.backgroundColor = .red
-                print("animate 2")
-                self.isShowingFact.toggle()
-            }, completion: nil)
-        }
         
     }
     

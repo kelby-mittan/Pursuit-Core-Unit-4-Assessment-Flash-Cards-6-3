@@ -11,23 +11,26 @@ import DataPersistence
 
 class FlashCardsTabBarController: UITabBarController {
 
-    
+    public var dataPersistence = DataPersistence<Card>(filename: "cards.plist")
     
     private lazy var cardsVC: CardsController = {
         let viewController = CardsController()
         viewController.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "folder"), tag: 0)
+        viewController.dataPersistence = dataPersistence
         return viewController
     }()
     
     private lazy var createCardsVC: CreateController = {
         let viewController = CreateController()
         viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "pencil.and.ellipsis.rectangle"), tag: 1)
+        viewController.dataPersistence = dataPersistence
         return viewController
     }()
     
     private lazy var searchCardsVC: SearchCardsController = {
         let viewController = SearchCardsController()
         viewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
+        viewController.dataPersistence = dataPersistence
         return viewController
     }()
     

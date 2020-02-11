@@ -19,6 +19,7 @@
 		026ACE4C23F2FA870013538D /* CardsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4B23F2FA870013538D /* CardsAPIClient.swift */; };
 		026ACE4E23F2FDAC0013538D /* FlashCardsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4D23F2FDAC0013538D /* FlashCardsTabBarController.swift */; };
 		026ACE5123F2FE140013538D /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 026ACE5023F2FE140013538D /* ImageKit */; };
+		026ACE5323F3177E0013538D /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE5223F3177E0013538D /* EmptyView.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579023A023F2EE3B000AA216 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		026ACE4923F2FA740013538D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		026ACE4B23F2FA870013538D /* CardsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAPIClient.swift; sourceTree = "<group>"; };
 		026ACE4D23F2FDAC0013538D /* FlashCardsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsTabBarController.swift; sourceTree = "<group>"; };
+		026ACE5223F3177E0013538D /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				026ACE3F23F2F9910013538D /* CardsView.swift */,
 				026ACE4123F2F9EC0013538D /* CreateView.swift */,
 				026ACE4323F2F9FD0013538D /* SearchView.swift */,
+				026ACE5223F3177E0013538D /* EmptyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */,
 				026ACE4C23F2FA870013538D /* CardsAPIClient.swift in Sources */,
 				026ACE3E23F2F9670013538D /* CardsController.swift in Sources */,
+				026ACE5323F3177E0013538D /* EmptyView.swift in Sources */,
 				026ACE4A23F2FA740013538D /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
