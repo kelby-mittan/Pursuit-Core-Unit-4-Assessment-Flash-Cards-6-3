@@ -94,13 +94,13 @@ extension SearchCardsController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemHeight: CGFloat = maxSize.height * 0.3
+        let itemHeight: CGFloat = maxSize.height * 0.27
         let itemWidth: CGFloat = maxSize.width * 0.85
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        return UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
     }
 }
 

@@ -80,6 +80,9 @@ class CardsCell: UICollectionViewCell {
         setupCardTitleConstraints()
         setupCardFactsConstraints()
         addGestureRecognizer(longPressGesture)
+        self.layer.borderWidth = 5
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.cornerRadius = 8
     }
     
     private func setupAddButtonConstraints() {

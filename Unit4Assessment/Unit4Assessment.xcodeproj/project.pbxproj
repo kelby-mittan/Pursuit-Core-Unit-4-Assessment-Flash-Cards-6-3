@@ -14,7 +14,6 @@
 		026ACE4223F2F9EC0013538D /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4123F2F9EC0013538D /* CreateView.swift */; };
 		026ACE4423F2F9FD0013538D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4323F2F9FD0013538D /* SearchView.swift */; };
 		026ACE4623F2FA2F0013538D /* CardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4523F2FA2F0013538D /* CardsCell.swift */; };
-		026ACE4823F2FA440013538D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4723F2FA440013538D /* SearchCell.swift */; };
 		026ACE4A23F2FA740013538D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4923F2FA740013538D /* Card.swift */; };
 		026ACE4C23F2FA870013538D /* CardsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4B23F2FA870013538D /* CardsAPIClient.swift */; };
 		026ACE4E23F2FDAC0013538D /* FlashCardsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026ACE4D23F2FDAC0013538D /* FlashCardsTabBarController.swift */; };
@@ -47,7 +46,6 @@
 		026ACE4123F2F9EC0013538D /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		026ACE4323F2F9FD0013538D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		026ACE4523F2FA2F0013538D /* CardsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCell.swift; sourceTree = "<group>"; };
-		026ACE4723F2FA440013538D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		026ACE4923F2FA740013538D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		026ACE4B23F2FA870013538D /* CardsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAPIClient.swift; sourceTree = "<group>"; };
 		026ACE4D23F2FDAC0013538D /* FlashCardsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsTabBarController.swift; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				026ACE4523F2FA2F0013538D /* CardsCell.swift */,
-				026ACE4723F2FA440013538D /* SearchCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 			files = (
 				026ACE4023F2F9910013538D /* CardsView.swift in Sources */,
 				026ACE5723F32C790013538D /* FlashCardService.swift in Sources */,
-				026ACE4823F2FA440013538D /* SearchCell.swift in Sources */,
 				026ACE4623F2FA2F0013538D /* CardsCell.swift in Sources */,
 				026ACE3A23F2F90F0013538D /* SearchCardsController.swift in Sources */,
 				026ACE4E23F2FDAC0013538D /* FlashCardsTabBarController.swift in Sources */,

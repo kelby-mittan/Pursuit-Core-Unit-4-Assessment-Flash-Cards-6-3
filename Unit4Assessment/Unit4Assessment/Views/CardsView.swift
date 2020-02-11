@@ -15,7 +15,7 @@ class CardsView: UIView {
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 100, height: 100)
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .blue
+        cv.backgroundColor = .darkGray
         return cv
     }()
     

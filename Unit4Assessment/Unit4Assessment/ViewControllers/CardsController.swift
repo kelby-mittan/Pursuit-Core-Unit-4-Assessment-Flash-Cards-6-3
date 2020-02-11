@@ -35,9 +35,9 @@ class CardsController: UIViewController {
 
         cardsView.collectionView.dataSource = self
         cardsView.collectionView.delegate = self
-        
+        cardsView.backgroundColor = .systemBackground
         cardsView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "cardCell")
-        cardsView.backgroundColor = .orange
+        addBackgroundGradient()
         loadCards()
     }
     
@@ -52,6 +52,17 @@ class CardsController: UIViewController {
         } catch {
             print("could not load cards")
         }
+    }
+    
+    private func addBackgroundGradient() {
+        let collectionViewBackgroundView = UIView()
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame.size = view.frame.size
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+        cardsView.collectionView.backgroundView = collectionViewBackgroundView
+        cardsView.collectionView.backgroundView?.layer.addSublayer(gradientLayer)
     }
     
 
@@ -83,14 +94,14 @@ extension CardsController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemHeight: CGFloat = maxSize.height * 0.3
+        let itemHeight: CGFloat = maxSize.height * 0.27
         let itemWidth: CGFloat = maxSize.width * 0.85
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        return UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
     }
 }
 

@@ -13,6 +13,8 @@ class CreateController: UIViewController {
     
     private let createVC = CreateView()
     
+    
+    
     private var titleForCard = ""
     private var cardFact1 = ""
     private var cardFact2 = ""
@@ -34,13 +36,15 @@ class CreateController: UIViewController {
         navigationItem.title = "Create Flash Card"
         let createBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(createFlashCard(_:)))
         self.navigationItem.rightBarButtonItem  = createBarButtonItem
-        //        createBarButtonItem.isEnabled = false
-        createVC.backgroundColor = .systemIndigo
+        createVC.backgroundColor = .lightGray
     }
     
     
     @objc func createFlashCard(_ sender: UIBarButtonItem){
-       
+        
+        let cardsVC = CardsController()
+        cardsVC.dataPersistence = dataPersistence
+        
         cardFacts.append(cardFact1)
         cardFacts.append(cardFact2)
         
@@ -55,7 +59,8 @@ class CreateController: UIViewController {
             } catch {
                 showAlert(title: "Sorry", message: "This Flash Card could not be saved")
             }
-            showAlert(title: "Great", message: "This card has been added!!!")
+//            showAlert(title: "Great", message: "This card has been added!!!")
+            navigationController?.pushViewController(cardsVC, animated: true)
         } else {
             showAlert(title: "Oops", message: "Please enter a title as well as two facts!!")
         }
@@ -79,12 +84,10 @@ extension CreateController: UITextViewDelegate {
         
         if textView == createVC.cardFact1TextView {
             cardFact1 = textView.text
-            textView.text = ""
             textView.resignFirstResponder()
             return true
         } else {
             cardFact2 = textView.text
-            textView.text = ""
             textView.resignFirstResponder()
             return true
         }
@@ -97,6 +100,10 @@ extension CreateController: UITextViewDelegate {
             cardFact2 = textView.text
         }
         
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return true
     }
     
 }
