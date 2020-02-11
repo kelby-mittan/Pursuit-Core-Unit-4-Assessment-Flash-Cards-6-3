@@ -36,6 +36,7 @@ class SearchCardsController: UIViewController {
 
         searchView.collectionView.dataSource = self
         searchView.collectionView.delegate = self
+        searchView.searchBar.delegate = self
         
         searchView.backgroundColor = .systemBackground
         searchView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "searchCell")
@@ -130,4 +131,19 @@ extension SearchCardsController: CardCellDelegate {
     }
     
     
+}
+
+extension SearchCardsController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            getLocalCards()
+            return
+        }
+        flashCards = flashCards.filter { $0.quizTitle.lowercased().contains(searchText.lowercased()) }
+    }
 }
