@@ -39,13 +39,9 @@ class SearchCardsController: UIViewController {
         getCards()
         searchView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "searchCell")
         
-        
+        dump(flashCards)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        getCards()
-//    }
     
     private func getCards() {
         CardAPIClient.fetchCards { [weak self] (result) in
@@ -56,6 +52,7 @@ class SearchCardsController: UIViewController {
                 self?.flashCards = cards
             }
         }
+        
     }
 
 
@@ -71,9 +68,10 @@ extension SearchCardsController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? CardsCell else {
             fatalError("could not deque")
         }
-        dump(flashCards)
         cell.isSavedCell = true
         let card = flashCards[indexPath.row]
+        cell.currentCard = card
+        cell.delegate = self
         cell.configureCell(for: card)
         cell.backgroundColor = .systemBackground
         return cell
@@ -104,4 +102,21 @@ extension SearchCardsController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
     }
+}
+
+extension SearchCardsController: CardCellDelegate {
+    
+    func selectedButton(_ cell: CardsCell, card: Card) {
+        print("\(card.cardTitle)")
+        do {
+            try dataPersistence.createItem(card)
+            showAlert(title: "Great", message: "This flash card has been added.")
+//            cell.addButton.isEnabled = false
+        } catch {
+            print("could not create")
+            showAlert(title: "oops", message: "could not add flash card")
+        }
+    }
+    
+    
 }

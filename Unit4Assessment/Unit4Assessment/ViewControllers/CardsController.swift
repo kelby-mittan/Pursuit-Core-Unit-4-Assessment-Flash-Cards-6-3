@@ -17,6 +17,14 @@ class CardsController: UIViewController {
         view = cardsView
     }
     
+    private var flashCards = [Card]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.cardsView.collectionView.reloadData()
+            }
+        }
+    }
+    
     public var dataPersistence: DataPersistence<Card>!
     
     override func viewDidLoad() {
@@ -27,6 +35,15 @@ class CardsController: UIViewController {
         
         cardsView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "cardCell")
         cardsView.backgroundColor = .orange
+        loadCards()
+    }
+    
+    private func loadCards() {
+        do {
+            flashCards = try dataPersistence.loadItems()
+        } catch {
+            print("could not load cards")
+        }
     }
     
 
@@ -35,14 +52,15 @@ class CardsController: UIViewController {
 
 extension CardsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return flashCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardsCell else {
             fatalError("could not deque")
         }
-        
+        let card = flashCards[indexPath.row]
+        cell.configureCell(for: card)
         cell.backgroundColor = .systemBackground
         return cell
     }
