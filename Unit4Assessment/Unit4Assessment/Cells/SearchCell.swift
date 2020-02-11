@@ -93,7 +93,6 @@ class SearchCell: UICollectionViewCell {
     }
     
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
-        print("long pressed")
         if gesture.state == .began || gesture.state == .changed {
 
             return
