@@ -51,7 +51,7 @@ class CardsCell: UICollectionViewCell {
     public lazy var cardFacts: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.numberOfLines = 5
+        label.numberOfLines = 8
         label.isUserInteractionEnabled = true
         label.alpha = 0
         label.text = "Testing the facts for the card"
@@ -60,7 +60,7 @@ class CardsCell: UICollectionViewCell {
     
     weak var delegate: CardCellDelegate?
     
-    public var isShowingFact = false
+    public var isShowingFact = true
     
     public var isSavedCell = false
     
@@ -77,6 +77,7 @@ class CardsCell: UICollectionViewCell {
     private func commonInit() {
         setupAddButtonConstraints()
         setupCardTitleConstraints()
+        setupCardFactsConstraints()
         addGestureRecognizer(longPressGesture)
     }
     
@@ -97,22 +98,26 @@ class CardsCell: UICollectionViewCell {
         cardTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cardTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            cardTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10),
+            cardTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             cardTitle.topAnchor.constraint(equalTo: addButton.bottomAnchor),
             cardTitle.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func setupCardFactsConstraints() {
+        addSubview(cardFacts)
+        cardFacts.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cardFacts.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            cardFacts.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            cardFacts.topAnchor.constraint(equalTo: addButton.bottomAnchor),
+            cardFacts.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
     @objc private func addButtonPressed(_ sender: UIButton) {
         print("add button pressed for \(currentCard.id)")
         delegate?.selectedButton(self, card: currentCard)
-        
-//        do {
-//            try dataPersistence.createItem(currentCard)
-//
-//        } catch {
-//            print("error: \(error)")
-//        }
         addButton.isEnabled = false
     }
     
@@ -156,6 +161,6 @@ class CardsCell: UICollectionViewCell {
         }
         
         cardTitle.text = card.cardTitle
-        cardFacts.text = card.facts.joined(separator: ", ")
+        cardFacts.text = card.facts.joined(separator: " ").capitalized
     }
 }
