@@ -81,6 +81,7 @@ extension CardsController: UICollectionViewDataSource {
         let card = savedFlashCards[indexPath.row]
         cell.delegate = self
         cell.currentCard = card
+        
         cell.configureCell(for: card)
         cell.backgroundColor = .systemBackground
         return cell
@@ -125,8 +126,14 @@ extension CardsController: CardCellDelegate {
             self.deleteCard(card)
         }
         
+        let markAsRememberedAction = UIAlertAction(title: "Mark \"\(card.quizTitle)\" as remembered", style: .default) { (action) in
+            cell.backgroundColor = .systemGreen
+        }
+        
         alertController.addAction(cancelAction)
+        alertController.addAction(markAsRememberedAction)
         alertController.addAction(deleteAction)
+        
         present(alertController, animated: true)
     }
     

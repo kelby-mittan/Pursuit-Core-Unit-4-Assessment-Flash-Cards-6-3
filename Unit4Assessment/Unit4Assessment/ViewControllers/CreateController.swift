@@ -60,7 +60,7 @@ class CreateController: UIViewController {
                 showAlert(title: "Sorry", message: "This Flash Card could not be saved")
             }
             resetUI()
-            navigationController?.pushViewController(cardsVC, animated: true)
+//            navigationController?.pushViewController(cardsVC, animated: true)
         } else {
             showAlert(title: "Oops", message: "Please enter a title as well as two facts!!")
         }
@@ -73,6 +73,7 @@ class CreateController: UIViewController {
         createVC.cardFact2TextView.text = ""
         createVC.placeHolderLabel1.isHidden = false
         createVC.placeHolderLabel2.isHidden = false
+        showAlert(title: "Cool", message: "This Flash Card has been created")
     }
     
 }
