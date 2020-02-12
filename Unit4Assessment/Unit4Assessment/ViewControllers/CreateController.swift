@@ -51,7 +51,7 @@ class CreateController: UIViewController {
         
         if !titleForCard.isEmpty && cardFact1 != "" && cardFact2 != "" {
             
-            let createdCard = Card(id: "1", quizTitle: titleForCard, facts: cardFacts)
+            let createdCard = Card(id: "0", quizTitle: titleForCard, facts: cardFacts)
             
             do {
                 try dataPersistence.createItem(createdCard)
@@ -59,14 +59,20 @@ class CreateController: UIViewController {
             } catch {
                 showAlert(title: "Sorry", message: "This Flash Card could not be saved")
             }
-            createVC.cardTitleTextField.text = ""
-            createVC.cardFact1TextView.text = ""
-            createVC.cardFact2TextView.text = ""
+            resetUI()
             navigationController?.pushViewController(cardsVC, animated: true)
         } else {
             showAlert(title: "Oops", message: "Please enter a title as well as two facts!!")
         }
         
+    }
+    
+    private func resetUI() {
+        createVC.cardTitleTextField.text = ""
+        createVC.cardFact1TextView.text = ""
+        createVC.cardFact2TextView.text = ""
+        createVC.placeHolderLabel1.isHidden = false
+        createVC.placeHolderLabel2.isHidden = false
     }
     
 }
@@ -97,8 +103,10 @@ extension CreateController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         if textView == createVC.cardFact1TextView {
+            createVC.placeHolderLabel1.isHidden = true
             cardFact1 = textView.text
         } else {
+            createVC.placeHolderLabel2.isHidden = true
             cardFact2 = textView.text
         }
         

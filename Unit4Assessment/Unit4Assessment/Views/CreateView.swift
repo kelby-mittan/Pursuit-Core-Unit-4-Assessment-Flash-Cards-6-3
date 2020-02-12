@@ -28,6 +28,7 @@ class CreateView: UIView {
         textView.font = UIFont.systemFont(ofSize: 20)
         textView.keyboardType = .default
         textView.layer.cornerRadius = 5
+        
         return textView
     }()
     
@@ -39,6 +40,22 @@ class CreateView: UIView {
         textView.keyboardType = .default
         textView.layer.cornerRadius = 5
         return textView
+    }()
+    
+    public lazy var placeHolderLabel1: UILabel = {
+        let label = UILabel()
+        label.text = "Enter first fact here"
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .lightGray
+        return label
+    }()
+    
+    public lazy var placeHolderLabel2: UILabel = {
+        let label = UILabel()
+        label.text = "Enter second fact here"
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .lightGray
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -55,6 +72,8 @@ class CreateView: UIView {
         setupTitleTextField()
         setupFact1TV()
         setupFact2TV()
+        setupPlaceHolder1()
+        setupPlaceHolder2()
     }
     
     
@@ -91,6 +110,28 @@ class CreateView: UIView {
             cardFact2TextView.leadingAnchor.constraint(equalTo: cardTitleTextField.leadingAnchor),
             cardFact2TextView.trailingAnchor.constraint(equalTo: cardTitleTextField.trailingAnchor),
             cardFact2TextView.heightAnchor.constraint(equalTo: cardFact1TextView.heightAnchor)
+        ])
+    }
+    
+    private func setupPlaceHolder1() {
+        addSubview(placeHolderLabel1)
+        placeHolderLabel1.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            placeHolderLabel1.topAnchor.constraint(equalTo: cardFact1TextView.topAnchor, constant: 10),
+            placeHolderLabel1.leadingAnchor.constraint(equalTo: cardFact1TextView.leadingAnchor, constant: 10),
+            placeHolderLabel1.trailingAnchor.constraint(equalTo: cardFact1TextView.trailingAnchor, constant: -10),
+        ])
+    }
+    
+    private func setupPlaceHolder2() {
+        addSubview(placeHolderLabel2)
+        placeHolderLabel2.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            placeHolderLabel2.topAnchor.constraint(equalTo: cardFact2TextView.topAnchor, constant: 10),
+            placeHolderLabel2.leadingAnchor.constraint(equalTo: cardFact2TextView.leadingAnchor, constant: 10),
+            placeHolderLabel2.trailingAnchor.constraint(equalTo: cardFact2TextView.trailingAnchor, constant: -10),
         ])
     }
     
