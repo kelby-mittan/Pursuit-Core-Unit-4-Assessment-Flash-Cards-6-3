@@ -79,6 +79,11 @@ extension SearchCardsController: UICollectionViewDataSource {
         cell.backgroundColor = .systemBackground
         let card = flashCards[indexPath.row]
 
+        // Would Really like to know why this doesn't work.
+//        if dataPersistence.hasItemBeenSaved(card) {
+//            cell.addButton.isEnabled = false
+//        }
+        
         cell.currentCard = card
         cell.isSavedCell = true
         cell.delegate = self
@@ -106,7 +111,7 @@ extension SearchCardsController: CardCellDelegate {
     func selectedButton(_ cell: CardsCell, card: Card) {
         
         if dataPersistence.hasItemBeenSaved(card) {
-            showAlert(title: "Oops", message: "You've already \"\(card.quizTitle)\" to your collection")
+            showAlert(title: "Oops", message: "You've already added \"\(card.quizTitle)\" to your collection")
         } else {
             do {
                 try dataPersistence.createItem(card)
