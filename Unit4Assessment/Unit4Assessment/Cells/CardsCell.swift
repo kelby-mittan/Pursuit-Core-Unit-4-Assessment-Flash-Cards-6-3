@@ -14,11 +14,9 @@ protocol CardCellDelegate: AnyObject {
 }
 
 class CardsCell: UICollectionViewCell {
-    
-    public var dataPersistence: DataPersistence<Card>!
-    
+        
     public var currentCard: Card!
-    
+        
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
         gesture.addTarget(self, action: #selector(didLongPress(_:)))
@@ -76,8 +74,9 @@ class CardsCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        setupAddButtonConstraints()
         setupMoreButtonConstraints()
+        setupAddButtonConstraints()
+        
         setupCardTitleConstraints()
         setupCardFactsConstraints()
         addGestureRecognizer(longPressGesture)
@@ -134,7 +133,6 @@ class CardsCell: UICollectionViewCell {
     
     @objc private func addButtonPressed(_ sender: UIButton) {
         delegate?.selectedButton(self, card: currentCard)
-        addButton.isEnabled = false
     }
     
     @objc private func moreButtonPressed(_ sender: UIButton) {

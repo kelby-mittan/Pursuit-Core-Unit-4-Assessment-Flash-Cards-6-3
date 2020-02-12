@@ -34,6 +34,9 @@ class CreateController: UIViewController {
         navigationItem.title = "Create Flash Card"
         let createBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(createFlashCard(_:)))
         self.navigationItem.rightBarButtonItem  = createBarButtonItem
+        
+        createBarButtonItem.isEnabled = true
+        
         createVC.backgroundColor = .lightGray
     }
     
@@ -46,8 +49,7 @@ class CreateController: UIViewController {
         cardFacts.append(cardFact1)
         cardFacts.append(cardFact2)
         
-        if !cardFact1.isEmpty && cardFacts.count == 2 {
-            sender.isEnabled = false
+        if !titleForCard.isEmpty && cardFact1 != "" && cardFact2 != "" {
             
             let createdCard = Card(id: "1", quizTitle: titleForCard, facts: cardFacts)
             
@@ -57,6 +59,9 @@ class CreateController: UIViewController {
             } catch {
                 showAlert(title: "Sorry", message: "This Flash Card could not be saved")
             }
+            createVC.cardTitleTextField.text = ""
+            createVC.cardFact1TextView.text = ""
+            createVC.cardFact2TextView.text = ""
             navigationController?.pushViewController(cardsVC, animated: true)
         } else {
             showAlert(title: "Oops", message: "Please enter a title as well as two facts!!")

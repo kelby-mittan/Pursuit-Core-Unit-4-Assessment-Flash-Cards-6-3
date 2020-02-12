@@ -10,12 +10,10 @@ import UIKit
 import DataPersistence
 
 class SearchCardsController: UIViewController {
-
+    
     public var dataPersistence: DataPersistence<Card>!
     
     private let searchView = SearchView()
-    
-    private var savedFlashCards = [Card]()
     
     private var isShowingFact = false
     
@@ -33,48 +31,38 @@ class SearchCardsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         searchView.collectionView.dataSource = self
         searchView.collectionView.delegate = self
         searchView.searchBar.delegate = self
         
         searchView.backgroundColor = .systemBackground
         searchView.collectionView.register(CardsCell.self, forCellWithReuseIdentifier: "searchCell")
-        
         getLocalCards()
-        loadSavedCards()
+        
     }
     
-    
-//    private func getCards() {
-//        CardAPIClient.fetchCards { [weak self] (result) in
-//            switch result {
-//            case .failure(let error):
-//                print("error \(error)")
-//            case .success(let cards):
-//                self?.flashCards = cards
-//            }
-//        }
-//
-//    }
+    //    private func getCards() {
+    //        CardAPIClient.fetchCards { [weak self] (result) in
+    //            switch result {
+    //            case .failure(let error):
+    //                print("error \(error)")
+    //            case .success(let cards):
+    //                self?.flashCards = cards
+    //            }
+    //        }
+    //
+    //    }
     
     private func getLocalCards() {
         
         do {
-        flashCards = try FlashCardService.fetchFlashCards()
+            flashCards = try FlashCardService.fetchFlashCards()
         } catch {
             print("couldn't get flash cards")
         }
     }
-
-    private func loadSavedCards() {
-        do {
-            savedFlashCards = try dataPersistence.loadItems()
-        } catch {
-            showAlert(title: "Oops", message: "could not load cards")
-        }
-    }
-
+    
 }
 
 
@@ -87,21 +75,18 @@ extension SearchCardsController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? CardsCell else {
             fatalError("could not deque")
         }
+        
         cell.isSavedCell = true
+        
         let card = flashCards[indexPath.row]
-        
-        if savedFlashCards.contains(card) {
-            cell.addButton.isEnabled = false
-        }
-        
+
         cell.currentCard = card
+        
         cell.delegate = self
         cell.configureCell(for: card)
         cell.backgroundColor = .systemBackground
         return cell
     }
-    
-    
 }
 
 extension SearchCardsController: UICollectionViewDelegateFlowLayout {
@@ -121,15 +106,19 @@ extension SearchCardsController: UICollectionViewDelegateFlowLayout {
 extension SearchCardsController: CardCellDelegate {
     
     func selectedButton(_ cell: CardsCell, card: Card) {
-        do {
-            try dataPersistence.createItem(card)
-            showAlert(title: "Great", message: "This flash card has been added.")
-        } catch {
-            print("could not create")
-            showAlert(title: "oops", message: "could not add flash card")
+        
+        if dataPersistence.hasItemBeenSaved(card) {
+            showAlert(title: "Oops", message: "You've already added that card to your collection")
+        } else {
+            do {
+                try dataPersistence.createItem(card)
+                showAlert(title: "Great", message: "This flash card has been added.")
+            } catch {
+                print("could not create")
+                showAlert(title: "oops", message: "could not add flash card")
+            }
         }
     }
-    
     
 }
 
