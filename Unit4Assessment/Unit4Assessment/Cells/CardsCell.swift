@@ -14,7 +14,8 @@ protocol CardCellDelegate: AnyObject {
 }
 
 class CardsCell: UICollectionViewCell {
-        
+    
+    
     public var currentCard: Card!
         
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
@@ -116,7 +117,7 @@ class CardsCell: UICollectionViewCell {
             cardTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             cardTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             cardTitle.topAnchor.constraint(equalTo: addButton.bottomAnchor),
-            cardTitle.bottomAnchor.constraint(equalTo: bottomAnchor)
+            cardTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -44)
         ])
     }
     
@@ -127,7 +128,7 @@ class CardsCell: UICollectionViewCell {
             cardFacts.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             cardFacts.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             cardFacts.topAnchor.constraint(equalTo: addButton.bottomAnchor),
-            cardFacts.bottomAnchor.constraint(equalTo: bottomAnchor)
+            cardFacts.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -44)
         ])
     }
     
@@ -140,6 +141,7 @@ class CardsCell: UICollectionViewCell {
     }
     
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+        
         if gesture.state == .began || gesture.state == .changed {
 
             return
@@ -154,13 +156,11 @@ class CardsCell: UICollectionViewCell {
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
                 self.cardTitle.alpha = 1.0
                 self.cardFacts.alpha = 0.0
-                self.isShowingFact.toggle()
             }, completion: nil)
         } else {
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
                 self.cardTitle.alpha = 0.0
                 self.cardFacts.alpha = 1.0
-                self.isShowingFact.toggle()
             }, completion: nil)
         }
     }
