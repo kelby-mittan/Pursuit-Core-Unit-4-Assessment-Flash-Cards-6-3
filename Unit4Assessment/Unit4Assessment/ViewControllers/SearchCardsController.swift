@@ -42,6 +42,7 @@ class SearchCardsController: UIViewController {
         
     }
     
+    // Function not being used because of problems with the API
     //    private func getCards() {
     //        CardAPIClient.fetchCards { [weak self] (result) in
     //            switch result {
@@ -75,16 +76,13 @@ extension SearchCardsController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? CardsCell else {
             fatalError("could not deque")
         }
-        
-        cell.isSavedCell = true
-        
+        cell.backgroundColor = .systemBackground
         let card = flashCards[indexPath.row]
 
         cell.currentCard = card
-        
+        cell.isSavedCell = true
         cell.delegate = self
         cell.configureCell(for: card)
-        cell.backgroundColor = .systemBackground
         return cell
     }
 }
@@ -108,11 +106,11 @@ extension SearchCardsController: CardCellDelegate {
     func selectedButton(_ cell: CardsCell, card: Card) {
         
         if dataPersistence.hasItemBeenSaved(card) {
-            showAlert(title: "Oops", message: "You've already added that card to your collection")
+            showAlert(title: "Oops", message: "You've already \"\(card.quizTitle)\" to your collection")
         } else {
             do {
                 try dataPersistence.createItem(card)
-                showAlert(title: "Great", message: "This flash card has been added.")
+                showAlert(title: "Great", message: "\"\(card.quizTitle)\" has been added.")
             } catch {
                 print("could not create")
                 showAlert(title: "oops", message: "could not add flash card")

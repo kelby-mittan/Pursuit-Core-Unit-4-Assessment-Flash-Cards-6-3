@@ -121,7 +121,7 @@ extension CardsController: CardCellDelegate {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+        let deleteAction = UIAlertAction(title: "Delete \"\(card.quizTitle)\"", style: .destructive) { (action) in
             self.deleteCard(card)
         }
         
