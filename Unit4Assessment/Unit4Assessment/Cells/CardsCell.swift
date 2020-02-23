@@ -17,6 +17,8 @@ class CardsCell: UICollectionViewCell {
     
     
     public var currentCard: Card!
+    
+    public var isRemembered = false
         
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
@@ -166,6 +168,10 @@ class CardsCell: UICollectionViewCell {
     }
     
     public func configureCell(for card: Card) {
+        
+        if isRemembered {
+            self.backgroundColor = .systemGreen
+        }
         
         if isSavedCell {
             addButton.isHidden = false

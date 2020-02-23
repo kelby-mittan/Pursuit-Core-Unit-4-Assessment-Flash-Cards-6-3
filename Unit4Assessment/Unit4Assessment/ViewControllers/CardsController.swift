@@ -126,8 +126,9 @@ extension CardsController: CardCellDelegate {
             self.deleteCard(card)
         }
         
-        let markAsRememberedAction = UIAlertAction(title: "Mark \"\(card.quizTitle)\" as remembered", style: .default) { (action) in
+        let markAsRememberedAction = UIAlertAction(title: "Mark \"\(card.quizTitle)\" as Remembered", style: .default) { (action) in
             cell.backgroundColor = .systemGreen
+//            cell.isRemembered = true
         }
         
         alertController.addAction(cancelAction)

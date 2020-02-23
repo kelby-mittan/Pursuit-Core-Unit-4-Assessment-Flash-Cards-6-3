@@ -71,6 +71,9 @@ class CreateController: UIViewController {
         createVC.cardTitleTextField.text = ""
         createVC.cardFact1TextView.text = ""
         createVC.cardFact2TextView.text = ""
+        createVC.cardTitleTextField.resignFirstResponder()
+        createVC.cardFact1TextView.resignFirstResponder()
+        createVC.cardFact2TextView.resignFirstResponder()
         createVC.placeHolderLabel1.isHidden = false
         createVC.placeHolderLabel2.isHidden = false
         showAlert(title: "Cool", message: "This Flash Card has been created")
@@ -83,6 +86,10 @@ extension CreateController: UITextFieldDelegate {
         titleForCard = textField.text ?? ""
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        titleForCard = textField.text ?? ""
     }
 }
 
